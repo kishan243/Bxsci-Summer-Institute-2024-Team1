@@ -14,7 +14,7 @@ package frc.robot;
  */
 public final class Constants {
   public static class OperatorConstants {
-    public static final int kDriverControllerPort = 0;
+    public static final int driverControllerPort = 0;
   }
    
   public static class IntakeConstants {
@@ -23,6 +23,10 @@ public final class Constants {
     public static final double stopPoint = 0; //encoder constants for extend() and retract() respsectively
     public static final double startPoint = 0; 
     public static final int elevatorPort = 0;
+  }
+
+  public static class ShooterConstants {
+    public static final int motorPort = 0; //port constant for motor instantiation
   }
 }
 

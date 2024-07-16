@@ -20,24 +20,54 @@ import frc.robot.Constants;
 // into the square.
 
 public class Shooter extends SubsystemBase {
-    private final CANSparkMax motor = new CANSparkMax(Constants.MotorConstants.kShooterMotorPort, MotorType.kBrushless);
+    private final CANSparkMax motor = new CANSparkMax(Constants.ShooterConstants.motorPort, MotorType.kBrushless);
 
     private double power;
     private double increment;
 
+    private State status;
+    private enum State {
+        ON,OFF
+    }
+
     public void IncreasePower() {
+        // increase power
         power += increment;
+        UpdatePower();
     }
     public void DecreasePower() {
+        // decrease power
         power -= increment;
+        UpdatePower();
     }
     public void IncreaseIncrement() {
+        // increase power increment
         increment += 0.1;
     }
     public void DecreaseIncrement() {
+        // decrease power increment
         increment -= 0.1;
     }
+    public void turnOn() {
+        // turn on motor
+        status = State.ON;
+        UpdatePower();
+    }
+    public void turnOff() {
+        // turn off motor
+        status = State.OFF;
+        UpdatePower();
+    }
     public void UpdatePower() {
-        motor.set(power);
+        // updates power based on new power and or status values
+        if (status == State.OFF) {
+            motor.set(0);
+        }
+        if (status == State.ON) {
+            motor.set(power);
+        }
+
+        // logs motor output
+        System.out.println(motor.get());
     }
 }
