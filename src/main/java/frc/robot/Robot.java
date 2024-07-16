@@ -26,6 +26,8 @@ public class Robot extends CommandRobot implements Logged {
   // INPUT DEVICES
   private final CommandXboxController operator = new CommandXboxController(OI.OPERATOR);
   private final CommandXboxController driver = new CommandXboxController(OI.DRIVER);
+  private Drive drive = new Drive();
+
 
 
   /** The robot contains subsystems, OI devices, and commands. */
@@ -54,6 +56,10 @@ public class Robot extends CommandRobot implements Logged {
       DriverStation.silenceJoystickConnectionWarning(true);
       DriverStation.silenceJoystickConnectionWarning(true);
     }
+  }
+  @Override
+  public void teleopPeriodic() {
+    //drive.drive(driver.getLeftY(), driver.getRightY());
   }
 
   /**
