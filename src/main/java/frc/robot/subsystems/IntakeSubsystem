@@ -5,7 +5,7 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.motorcontrol.PWMSparkMax;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
       // Import all necessary items
-public class Intake extends SubsystemBase {
+public class IntakeSubsystem extends SubsystemBase {
     boolean extended = false;
     BooleanSupplier isExtended = () -> extended;
     boolean elevated = false
@@ -68,10 +68,10 @@ public Command toggleElevation() {
         return runOnce(
             () -> {
                 if (isElevated.getAsBoolean()) {
-                notElevated();
+                elevator.set(0)
                 elevated = false;
             } else {
-                elevate();
+                elevator.set(1)
                 elevated = true;
             } 
             }
