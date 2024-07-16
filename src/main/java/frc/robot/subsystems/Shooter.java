@@ -25,10 +25,13 @@ public class Shooter extends SubsystemBase {
     private double power;
     private double increment;
 
+    public void IncreasePower() {
+        power += increment;
+    }
     public void DecreasePower() {
         power -= increment;
     }
-    public void IncreasePower() {
+    public void IncreaseIncrement() {
         increment += 0.1;
     }
     public void DecreaseIncrement() {
