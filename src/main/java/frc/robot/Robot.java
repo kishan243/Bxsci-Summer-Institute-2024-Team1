@@ -18,7 +18,7 @@ import edu.wpi.first.wpilibj.XboxController;
  */
 public class Robot extends TimedRobot {
   private XboxController controller = new XboxController(0);
-  private DriveSubsystem drive = new DriveSubsystem();
+  private Drive drive = new Drive();
 
 
   /**
