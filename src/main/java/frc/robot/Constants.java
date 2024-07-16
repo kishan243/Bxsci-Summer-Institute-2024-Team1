@@ -17,13 +17,13 @@ public final class Constants {
   public static class OperatorConstants {
     public static final int kDriverControllerPort = 0;
   }
-   
+
+  
   public static class IntakeConstants {
     public static final int rollerPort = 0; //port constants for motor instantiation
     public static final int pivotPort = 0;
+    public static final int elevatorPort = 0;
     public static final double stopPoint = 0; //encoder constants for extend() and retract() respsectively
     public static final double startPoint = 0; 
-    public static final int elevatorPort = 0; //placeholder
   }
 }
-
