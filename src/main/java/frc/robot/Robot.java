@@ -84,6 +84,7 @@ public class Robot extends TimedRobot {
 // controller inputs 
     controller.x().onTrue(intake.toggleExtension()); //extend & retract
     controller.y().whileTrue(intake.runIntake()); // intake toggle
+    controller.a().whileTrue(elevate.runElevate()); //elevator toggle
   }
 
   /** This function is called periodically during operator control. */

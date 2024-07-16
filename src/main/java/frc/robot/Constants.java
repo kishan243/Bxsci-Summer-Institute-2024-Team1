@@ -23,7 +23,7 @@ public final class Constants {
     public static final int pivotPort = 0;
     public static final double stopPoint = 0; //encoder constants for extend() and retract() respsectively
     public static final double startPoint = 0; 
-    public static final int elevatorPort = 0;
+    public static final int elevatorPort = 0; //placeholder
   }
 }
 

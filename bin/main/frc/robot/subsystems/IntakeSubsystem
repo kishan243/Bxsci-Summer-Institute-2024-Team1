@@ -72,7 +72,7 @@ public Command toggleElevation() {
                 elevated = false;
             } else {
                 elevate();
-                extended = true;
+                elevated = true;
             } 
             }
         );
