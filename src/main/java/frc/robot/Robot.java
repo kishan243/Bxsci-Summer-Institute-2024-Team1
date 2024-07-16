@@ -7,11 +7,8 @@ package frc.robot;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-<<<<<<< HEAD
 import edu.wpi.first.wpilibj.XboxController;
 
-=======
->>>>>>> 1f79513dc5b454c1a2270cc21108364bf0249e22
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -20,11 +17,8 @@ import edu.wpi.first.wpilibj.XboxController;
  * project.
  */
 public class Robot extends TimedRobot {
-<<<<<<< HEAD
   private XboxController controller = new XboxController(0);
   private DriveSubsystem drive = new DriveSubsystem();
-=======
->>>>>>> 1f79513dc5b454c1a2270cc21108364bf0249e22
 
 
   /**
@@ -66,13 +60,10 @@ public class Robot extends TimedRobot {
 
   
   }
-<<<<<<< HEAD
   @Override
   public void teleopPeriodic() {
     drive.drive(controller.getLeftY(), control.getRightY());
   }
-=======
->>>>>>> 1f79513dc5b454c1a2270cc21108364bf0249e22
 
   /** This function is called periodically during autonomous. */
   @Override
@@ -89,13 +80,7 @@ public class Robot extends TimedRobot {
 
   /** This function is called periodically during operator control. */
   @Override
-<<<<<<< HEAD
-  public void teleopPeriodic() {
-    
-  }
-=======
   public void teleopPeriodic() {}
->>>>>>> 1f79513dc5b454c1a2270cc21108364bf0249e22
 
   @Override
   public void testInit() {
