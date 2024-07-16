@@ -21,7 +21,7 @@ public class Robot extends TimedRobot {
 
   private RobotContainer m_robotContainer;
   private CommandXboxController controller = new CommandXboxController(0);
-  private Intake intake = new Intake();
+  private Intake intake = new IntakeSubsystem();
 
   /**
    * This function is run when the robot is first started up and should be used for any
