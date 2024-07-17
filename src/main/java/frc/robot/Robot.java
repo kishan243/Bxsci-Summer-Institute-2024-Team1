@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
+import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.Intake;
 
 /**
@@ -21,6 +22,8 @@ public class Robot extends TimedRobot {
 
   private CommandXboxController controller = new CommandXboxController(0);
   private Intake intake = new Intake();
+  private Elevator elevator = new Elevator();
+
 
   /**
    * This function is called every 20 ms, no matter the mode. Use this for items like diagnostics
@@ -48,12 +51,7 @@ public class Robot extends TimedRobot {
   /** This autonomous runs the autonomous command selected by your {@link RobotContainer} class. */
   @Override
   public void autonomousInit() {
-    m_autonomousCommand = m_robotContainer.getAutonomousCommand();
-
-    // schedule the autonomous command (example)
-    if (m_autonomousCommand != null) {
-      m_autonomousCommand.schedule();
-    }
+    
   }
 
   /** This function is called periodically during autonomous. */
@@ -71,8 +69,9 @@ public class Robot extends TimedRobot {
     }
 // controller inputs 
     controller.x().onTrue(intake.toggleExtension()); //extend & retract
-    controller.y().whileTrue(intake.runIntake()); // intake toggle
-    controller.a().whileTrue(elevate.runElevate()); //elevator toggle
+    controller.y().whileTrue(
+       intake.runIntake().alongWith(elevator.intakeBrake())); // intake toggle
+    // controller.a().whileTrue(elevate.runElevate()); //elevator toggle
   }
 
   /** This function is called periodically during operator control. */
