@@ -17,8 +17,6 @@ import edu.wpi.first.wpilibj.XboxController;
  * project.
  */
 public class Robot extends TimedRobot {
-  private XboxController controller = new XboxController(0);
-  private Drive drive = new Drive();
 
 
   /**
@@ -59,10 +57,6 @@ public class Robot extends TimedRobot {
   public void autonomousInit() {
 
   
-  }
-  @Override
-  public void teleopPeriodic() {
-    drive.drive(controller.getLeftY(), control.getRightY());
   }
 
   /** This function is called periodically during autonomous. */
