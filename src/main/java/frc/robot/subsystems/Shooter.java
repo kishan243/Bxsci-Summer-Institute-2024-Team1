@@ -5,6 +5,7 @@ import com.revrobotics.CANSparkLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import frc.robot.Constants.*;
 
 // The shooter is to be manually tuned once the robot is all set and working.
 // In order to simplify this process we will have methods to aid in testing.
@@ -17,10 +18,10 @@ import frc.robot.Constants;
 // Drivetrain needs to add encoders in order to determine the angle at -
 // which to shoot(since we need our position relative to the goal)
 // Also some weird math is required in order to make sure that we get it -
-// into the square.
+// into the square. Therefore we just have to aim for the orgin
 
 public class Shooter extends SubsystemBase {
-    private final CANSparkMax motor = new CANSparkMax(Constants.ShooterConstants.motorPort, MotorType.kBrushless);
+    private final CANSparkMax motor = new CANSparkMax(ShooterConstants.motorPort, MotorType.kBrushless);
 
     private double power;
     private double increment;
@@ -29,7 +30,16 @@ public class Shooter extends SubsystemBase {
     private enum State {
         ON,OFF
     }
+    
+    public double CalculatePower(double currentX, double currentY) {
+        double xDistanceFromCell = Math.pow(currentX - Constants.FieldConstants.boxX,2);
+        double yDistanceFromCell = Math.pow(currentY - Constants.FieldConstants.boxY,2);
+        double distanceFromCell = Math.sqrt(xDistanceFromCell + yDistanceFromCell);
 
+        double cpower = distanceFromCell/ShooterConstants.testingDistance * ShooterConstants.testingPower;
+        return cpower;
+    }
+    
     public void IncreasePower() {
         // increase power
         power += increment;

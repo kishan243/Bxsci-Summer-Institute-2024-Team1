@@ -5,6 +5,7 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
@@ -20,7 +21,7 @@ import frc.robot.subsystems.Shooter;
 public class Robot extends TimedRobot {
 
   private static final Shooter shooter = new Shooter();
-  private static final CommandXboxController controller = new CommandXboxController(Constants.OperatorConstants.driverControllerPort);
+  private static final XboxController controller = new XboxController(Constants.OperatorConstants.driverControllerPort);
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -58,7 +59,7 @@ public class Robot extends TimedRobot {
   /** This autonomous runs the autonomous command selected by your {@link RobotContainer} class. */
   @Override
   public void autonomousInit() {
-
+    
   
   }
 
