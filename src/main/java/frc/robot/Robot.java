@@ -6,7 +6,7 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-import frc.robot.subsystems.DriveSubsystem;
+import frc.robot.subsystems.Drive;
 import edu.wpi.first.wpilibj.XboxController;
 
 
@@ -17,8 +17,8 @@ import edu.wpi.first.wpilibj.XboxController;
  * project.
  */
 public class Robot extends TimedRobot {
+  private Drive drive = new Drive();
   private XboxController controller = new XboxController(0);
-  private DriveSubsystem drive = new DriveSubsystem();
 
 
   /**
@@ -60,10 +60,6 @@ public class Robot extends TimedRobot {
 
   
   }
-  @Override
-  public void teleopPeriodic() {
-    drive.drive(controller.getLeftY(), controller.getRightY());
-  }
 
   /** This function is called periodically during autonomous. */
   @Override
@@ -76,6 +72,12 @@ public class Robot extends TimedRobot {
     // continue until interrupted by another command, remove
     // this line or comment it out.
  
+  }
+
+  /** This function is called periodically during operator control. */
+  @Override
+  public void teleopPeriodic() {
+    drive.drive(controller.getLeftY(), controller.getRightY());
   }
 
   @Override
