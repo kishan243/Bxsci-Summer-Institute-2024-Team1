@@ -6,15 +6,9 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-<<<<<<< HEAD
 import frc.robot.subsystems.Shooter;
-=======
-import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj.XboxController;
-import edu.wpi.first.wpilibj2.command.button.Trigger;
-import frc.robot.subsystems.Shooter;
 
->>>>>>> f0ccb3c2da015dce498848dd8935ea461d6fe240
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -23,13 +17,9 @@ import frc.robot.subsystems.Shooter;
  * project.
  */
 public class Robot extends TimedRobot {
-<<<<<<< HEAD
-  Shooter shooter = new Shooter();
-=======
 
   private static final Shooter shooter = new Shooter();
   private static final XboxController controller = new XboxController(Constants.OperatorConstants.driverControllerPort);
->>>>>>> f0ccb3c2da015dce498848dd8935ea461d6fe240
 
   /**
    * This function is run when the robot is first started up and should be used for any
