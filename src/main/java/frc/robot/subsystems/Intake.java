@@ -12,17 +12,17 @@ import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
       // Import all necessary items
 import frc.robot.Constants;
+import frc.robot.Ports;
 public class Intake extends SubsystemBase {
     boolean extended = false;
     BooleanSupplier isExtended = () -> extended;
     // boolean elevated = false;
     // BooleanSupplier isElevated = () -> elevated;
     AbsoluteEncoder pivotEncoder;
-    CANSparkMax roller = new CANSparkMax(Constants.IntakeConstants.rollerPort, MotorType.kBrushless);
-    CANSparkMax pivot = new CANSparkMax(Constants.IntakeConstants.pivotPort, MotorType.kBrushless);
+    CANSparkMax roller = new CANSparkMax(Ports.rollerPort, MotorType.kBrushless);
+    CANSparkMax pivot = new CANSparkMax(Ports.pivotPort, MotorType.kBrushless);
     // CANSparkMax elevator = new CANSparkMax(Constants.IntakeConstants.elevatorPort, MotorType.kBrushless);
-    DigitalInput beamBreakEntrance = new DigitalInput(Constants.IntakeConstants.beamBreakEntrancePort);
-    DigitalInput beamBreakExit = new DigitalInput(Constants.IntakeConstants.beamBreakExitPort);
+    DigitalInput beamBreakEntrance = new DigitalInput(Ports.beamBreakEntrancePort);
 
     public Intake() {
         pivotEncoder = pivot.getAbsoluteEncoder();
@@ -87,7 +87,8 @@ public class Intake extends SubsystemBase {
 //         );
 //     }
 
-        public Command detectForElevator() {
+        public Command () {
+            return
             
         }
   @Override
