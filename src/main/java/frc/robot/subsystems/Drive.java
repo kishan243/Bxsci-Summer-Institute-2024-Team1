@@ -3,12 +3,15 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import com.revrobotics.CANSparkMax;
 import static com.revrobotics.CANSparkLowLevel.MotorType.*;
+import edu.wpi.first.wpilibj.Encoder;
 
 public class Drive extends SubsystemBase {
     private CANSparkMax leftLeader = new CANSparkMax(0, kBrushless);
     private CANSparkMax leftFollower = new CANSparkMax(1, kBrushless);
     private CANSparkMax rightLeader = new CANSparkMax(2, kBrushless);
     private CANSparkMax rightFollower = new CANSparkMax(3, kBrushless);
+    private Encoder lefEncoder = new Encoder(null, null);
+    private Encoder rightEncoder = new Encoder(null, null);
 
     public Drive(){
         rightLeader.setInverted(true);
