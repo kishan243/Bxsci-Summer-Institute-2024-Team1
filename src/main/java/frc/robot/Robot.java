@@ -20,7 +20,7 @@ public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
 
   private CommandXboxController controller = new CommandXboxController(0);
-  private Intake intake = new IntakeSubsystem();
+  private Intake intake = new Intake();
 
   /**
    * This function is called every 20 ms, no matter the mode. Use this for items like diagnostics
