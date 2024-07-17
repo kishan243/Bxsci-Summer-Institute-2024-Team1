@@ -1,14 +1,20 @@
-package frc.robot;
+package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj.TimedRobot;
-import edu.wpi.first.wpilibj.XboxController;
-import edu.wpi.first.wpilibj.motorcontrol.PWMSparkMax;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import java.util.function.BooleanSupplier;
+
+import com.revrobotics.AbsoluteEncoder;
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkLowLevel.MotorType;
+
+import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.Commands;
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
       // Import all necessary items
+import frc.robot.Constants;
 public class Intake extends SubsystemBase {
     boolean extended = false;
     BooleanSupplier isExtended = () -> extended;
-    boolean elevated = false
+    boolean elevated = false;
     BooleanSupplier isElevated = () -> elevated;
     AbsoluteEncoder pivotEncoder;
     CANSparkMax roller = new CANSparkMax(Constants.IntakeConstants.rollerPort, MotorType.kBrushless);
@@ -68,10 +74,10 @@ public Command toggleElevation() {
         return runOnce(
             () -> {
                 if (isElevated.getAsBoolean()) {
-                elevator.set(0)
+                elevator.set(0);
                 elevated = false;
             } else {
-                elevator.set(1)
+                elevator.set(1);
                 elevated = true;
             } 
             }
