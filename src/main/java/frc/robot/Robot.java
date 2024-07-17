@@ -48,12 +48,7 @@ public class Robot extends TimedRobot {
   /** This autonomous runs the autonomous command selected by your {@link RobotContainer} class. */
   @Override
   public void autonomousInit() {
-    m_autonomousCommand = m_robotContainer.getAutonomousCommand();
-
-    // schedule the autonomous command (example)
-    if (m_autonomousCommand != null) {
-      m_autonomousCommand.schedule();
-    }
+   
   }
 
   /** This function is called periodically during autonomous. */
@@ -72,7 +67,7 @@ public class Robot extends TimedRobot {
 // controller inputs 
     controller.x().onTrue(intake.toggleExtension()); //extend & retract
     controller.y().whileTrue(intake.runIntake()); // intake toggle
-    controller.a().whileTrue(elevate.runElevate()); //elevator toggle
+    // controller.a().whileTrue(elevate.runElevate()); //elevator toggle
   }
 
   /** This function is called periodically during operator control. */
