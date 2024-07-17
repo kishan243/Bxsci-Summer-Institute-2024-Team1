@@ -7,10 +7,15 @@ package frc.robot;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+<<<<<<< HEAD
+import frc.robot.subsystems.Shooter;
+=======
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
+import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.subsystems.Shooter;
 
+>>>>>>> f0ccb3c2da015dce498848dd8935ea461d6fe240
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -19,7 +24,6 @@ import frc.robot.subsystems.Shooter;
  * project.
  */
 public class Robot extends TimedRobot {
-
   private static final Shooter shooter = new Shooter();
   private static final XboxController controller = new XboxController(Constants.OperatorConstants.driverControllerPort);
 
@@ -73,12 +77,24 @@ public class Robot extends TimedRobot {
     // teleop starts running. If you want the autonomous to
     // continue until interrupted by another command, remove
     // this line or comment it out.
- 
   }
 
   /** This function is called periodically during operator control. */
   @Override
-  public void teleopPeriodic() {}
+  public void teleopPeriodic() {
+    if(controller.getAButton()) {
+      shooter.IncreasePower();
+    }
+    if(controller.getBButton()) {
+      shooter.DecreasePower();
+    }
+    if(controller.getXButton()) {
+      shooter.IncreaseIncrement();
+    }
+    if(controller.getYButton()) {
+      shooter.DecreaseIncrement();
+    }
+  }
 
   @Override
   public void testInit() {
