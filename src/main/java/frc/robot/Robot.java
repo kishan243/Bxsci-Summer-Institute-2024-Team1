@@ -17,7 +17,6 @@ import edu.wpi.first.wpilibj.XboxController;
  * project.
  */
 public class Robot extends TimedRobot {
-
   private static final Shooter shooter = new Shooter();
   private static final XboxController controller = new XboxController(Constants.OperatorConstants.driverControllerPort);
 
@@ -57,7 +56,7 @@ public class Robot extends TimedRobot {
   /** This autonomous runs the autonomous command selected by your {@link RobotContainer} class. */
   @Override
   public void autonomousInit() {
-
+    
   
   }
 
