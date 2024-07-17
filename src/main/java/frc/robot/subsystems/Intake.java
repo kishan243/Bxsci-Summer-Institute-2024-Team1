@@ -6,6 +6,7 @@ import com.revrobotics.AbsoluteEncoder;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkLowLevel.MotorType;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -14,12 +15,14 @@ import frc.robot.Constants;
 public class Intake extends SubsystemBase {
     boolean extended = false;
     BooleanSupplier isExtended = () -> extended;
-    boolean elevated = false;
-    BooleanSupplier isElevated = () -> elevated;
+    // boolean elevated = false;
+    // BooleanSupplier isElevated = () -> elevated;
     AbsoluteEncoder pivotEncoder;
     CANSparkMax roller = new CANSparkMax(Constants.IntakeConstants.rollerPort, MotorType.kBrushless);
     CANSparkMax pivot = new CANSparkMax(Constants.IntakeConstants.pivotPort, MotorType.kBrushless);
-    CANSparkMax elevator = new CANSparkMax(Constants.IntakeConstants.elevatorPort, MotorType.kBrushless);
+    // CANSparkMax elevator = new CANSparkMax(Constants.IntakeConstants.elevatorPort, MotorType.kBrushless);
+    DigitalInput beamBreakEntrance = new DigitalInput(Constants.DigitalInputConstants.beamBreakEntrancePort);
+    DigitalInput beamBreakExit = new DigitalInput(Constants.DigitalInputConstants.beamBreakExitPort);
 
     public Intake() {
         pivotEncoder = pivot.getAbsoluteEncoder();
@@ -69,21 +72,24 @@ public class Intake extends SubsystemBase {
             () -> roller.set(0)
         );
     }
-// Starts the elevator
-public Command toggleElevation() {
-        return runOnce(
-            () -> {
-                if (isElevated.getAsBoolean()) {
-                elevator.set(0);
-                elevated = false;
-            } else {
-                elevator.set(1);
-                elevated = true;
-            } 
-            }
-        );
-    }
+// // Starts the elevator
+// public Command toggleElevation() {
+//         return runOnce(
+//             () -> {
+//                 if (isElevated.getAsBoolean()) {
+//                 elevator.set(0);
+//                 elevated = false;
+//             } else {
+//                 elevator.set(1);
+//                 elevated = true;
+//             } 
+//             }
+//         );
+//     }
 
+        public Command detectForElevator() {
+            
+        }
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
