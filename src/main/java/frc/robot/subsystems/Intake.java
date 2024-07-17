@@ -21,8 +21,8 @@ public class Intake extends SubsystemBase {
     CANSparkMax roller = new CANSparkMax(Constants.IntakeConstants.rollerPort, MotorType.kBrushless);
     CANSparkMax pivot = new CANSparkMax(Constants.IntakeConstants.pivotPort, MotorType.kBrushless);
     // CANSparkMax elevator = new CANSparkMax(Constants.IntakeConstants.elevatorPort, MotorType.kBrushless);
-    DigitalInput beamBreakEntrance = new DigitalInput(Constants.DigitalInputConstants.beamBreakEntrancePort);
-    DigitalInput beamBreakExit = new DigitalInput(Constants.DigitalInputConstants.beamBreakExitPort);
+    DigitalInput beamBreakEntrance = new DigitalInput(Constants.IntakeConstants.beamBreakEntrancePort);
+    DigitalInput beamBreakExit = new DigitalInput(Constants.IntakeConstants.beamBreakExitPort);
 
     public Intake() {
         pivotEncoder = pivot.getAbsoluteEncoder();
