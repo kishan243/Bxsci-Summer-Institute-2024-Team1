@@ -5,10 +5,9 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
-import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-import frc.robot.subsystems.Drive;
 import edu.wpi.first.wpilibj.XboxController;
+import frc.robot.subsystems.Drive;
 
 
 /**
@@ -18,8 +17,6 @@ import edu.wpi.first.wpilibj.XboxController;
  * project.
  */
 public class Robot extends TimedRobot {
-  private XboxController controller = new XboxController(0);
-  private Drive drive = new Drive();
 
 
   /**
@@ -61,10 +58,6 @@ public class Robot extends TimedRobot {
 
   
   }
-
-  // @Override
-  // public void teleopPeriodic() {
-  // }
 
   /** This function is called periodically during autonomous. */
   @Override
