@@ -6,8 +6,8 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.subsystems.Drive;
+import edu.wpi.first.wpilibj.XboxController;
 
 
 /**
@@ -17,6 +17,8 @@ import frc.robot.subsystems.Drive;
  * project.
  */
 public class Robot extends TimedRobot {
+  private Drive drive = new Drive();
+  private XboxController controller = new XboxController(0);
 
 
   /**
