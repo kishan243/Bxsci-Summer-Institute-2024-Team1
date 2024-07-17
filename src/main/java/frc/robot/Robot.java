@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.subsystems.Shooter;
 =======
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
+import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.subsystems.Shooter;
 
@@ -27,7 +28,7 @@ public class Robot extends TimedRobot {
 =======
 
   private static final Shooter shooter = new Shooter();
-  private static final CommandXboxController controller = new CommandXboxController(Constants.OperatorConstants.driverControllerPort);
+  private static final XboxController controller = new XboxController(Constants.OperatorConstants.driverControllerPort);
 >>>>>>> f0ccb3c2da015dce498848dd8935ea461d6fe240
 
   /**
@@ -85,17 +86,17 @@ public class Robot extends TimedRobot {
   /** This function is called periodically during operator control. */
   @Override
   public void teleopPeriodic() {
-    if(controller.a()) {
-      shooter.IncreaseIncrement();
-    }
-    if(controller.b()) {
-      shooter.DecreaseIncrement();
-    }
-    if(controller.x()) {
+    if(controller.getAButton()) {
       shooter.IncreasePower();
     }
-    if(controller.y()) {
+    if(controller.getBButton()) {
       shooter.DecreasePower();
+    }
+    if(controller.getXButton()) {
+      shooter.IncreaseIncrement();
+    }
+    if(controller.getYButton()) {
+      shooter.DecreaseIncrement();
     }
   }
 
