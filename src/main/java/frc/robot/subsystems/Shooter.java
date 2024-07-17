@@ -63,6 +63,7 @@ public class Shooter extends SubsystemBase {
         if (status == State.OFF) {
             motor.set(0);
         }
+        
         if (status == State.ON) {
             motor.set(power);
         }
