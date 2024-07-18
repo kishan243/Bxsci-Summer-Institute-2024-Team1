@@ -2,7 +2,7 @@ package frc.robot.subsystems;
 
 import java.util.function.BooleanSupplier;
 
-import javax.sound.midi.Sequence;
+
 
 import com.revrobotics.AbsoluteEncoder;
 import com.revrobotics.CANSparkMax;
@@ -37,7 +37,7 @@ public class Intake extends SubsystemBase {
         return runOnce(
             () -> pivot.set(.5)
         ).andThen(
-            //TODO
+            //
             Commands.waitUntil(() -> pivotEncoder.getPosition() >= Constants.IntakeConstants.stopPoint)
             .andThen(() -> pivot.set(0))
         );
