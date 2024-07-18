@@ -5,19 +5,23 @@ import com.revrobotics.CANSparkMax;
 import static com.revrobotics.CANSparkLowLevel.MotorType.*;
 
 public class Drive extends SubsystemBase {
-    private CANSparkMax leftLeader = new CANSparkMax(0, kBrushless);
-    private CANSparkMax leftFollower = new CANSparkMax(1, kBrushless);
-    private CANSparkMax rightLeader = new CANSparkMax(2, kBrushless);
-    private CANSparkMax rightFollower = new CANSparkMax(3, kBrushless);
+    private CANSparkMax leftLeader = new CANSparkMax(13, kBrushless);
+    private CANSparkMax leftFollower = new CANSparkMax(37, kBrushless);
+    private CANSparkMax rightLeader = new CANSparkMax(25, kBrushless);
+    private CANSparkMax rightFollower = new CANSparkMax(18, kBrushless);
 
-    public Drive(){
-        rightLeader.setInverted(true);
+    public Drive() {
         leftFollower.follow(leftLeader);
         rightFollower.follow(rightLeader);
+
+        rightLeader.burnFlash();
+        rightFollower.burnFlash();
+        leftLeader.burnFlash();
+        leftFollower.burnFlash();
     }
 
     public void drive(double leftSpeed, double rightSpeed) {
-        leftLeader.set(leftSpeed);
-        rightLeader.set(rightSpeed);
+        leftLeader.set(Math.copySign(Math.pow(leftSpeed, 2), leftSpeed));
+        rightLeader.set(Math.copySign(Math.pow(rightSpeed, 2), -rightSpeed));
     }
 }
