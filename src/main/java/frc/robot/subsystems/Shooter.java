@@ -50,14 +50,8 @@ public class Shooter extends SubsystemBase {
         power -= increment;
         UpdatePower();
     }
-    public void IncreaseIncrement() {
-        // increase power increment
-        increment += 0.1;
-    }
-    public void DecreaseIncrement() {
-        // decrease power increment
-        increment -= 0.1;
-    }
+    
+    
     public void turnOn() {
         // turn on motor
         status = State.ON;

@@ -19,16 +19,24 @@ import edu.wpi.first.wpilibj.XboxController;
 public class Robot extends TimedRobot {
   private static final Shooter shooter = new Shooter();
   private static final XboxController controller = new XboxController(Constants.OperatorConstants.driverControllerPort);
+  
+  enum TuneMode {
+    SHOOTER_TUNING,
+    INTAKE_TUNING,
+    DRIVETRAIN_TUNING,
+    COMPLETE_TUNING,
+    DEFAULT
+  }
+
+  private static TuneMode tuneMode = TuneMode.DEFAULT;
 
   /**
    * This function is run when the robot is first started up and should be used for any
    * initialization code.
    */
+
   @Override
-  public void robotInit() {
-    // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
-    // autonomous chooser on the dashboard.
-  }
+  public void robotInit() {}
 
   /**
    * This function is called every 20 ms, no matter the mode. Use this for items like diagnostics
@@ -53,12 +61,9 @@ public class Robot extends TimedRobot {
   @Override
   public void disabledPeriodic() {}
 
-  /** This autonomous runs the autonomous command selected by your {@link RobotContainer} class. */
+  /** This runs the autonomous command */
   @Override
-  public void autonomousInit() {
-    
-  
-  }
+  public void autonomousInit() {}
 
   /** This function is called periodically during autonomous. */
   @Override
@@ -75,17 +80,12 @@ public class Robot extends TimedRobot {
   /** This function is called periodically during operator control. */
   @Override
   public void teleopPeriodic() {
+    // Configures button bindings for shooter
     if(controller.getAButton()) {
       shooter.IncreasePower();
     }
     if(controller.getBButton()) {
       shooter.DecreasePower();
-    }
-    if(controller.getXButton()) {
-      shooter.IncreaseIncrement();
-    }
-    if(controller.getYButton()) {
-      shooter.DecreaseIncrement();
     }
   }
 
@@ -97,7 +97,22 @@ public class Robot extends TimedRobot {
 
   /** This function is called periodically during test mode. */
   @Override
-  public void testPeriodic() {}
+  public void testPeriodic() {
+    switch (tuneMode) {
+      case DRIVETRAIN_TUNING:
+        
+        break;
+      case SHOOTER_TUNING:
+        
+        break;
+      case INTAKE_TUNING:
+        
+        break;
+      default:
+
+        break;
+    }
+  }
 
   /** This function is called once when the robot is first started up. */
   @Override
