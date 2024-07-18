@@ -23,7 +23,6 @@ import frc.robot.Constants.*;
 
 public class Shooter extends SubsystemBase {
     private final CANSparkMax motor = new CANSparkMax(ShooterConstants.motorPort, MotorType.kBrushless);
-
     private double power;
     
     /** 
@@ -95,5 +94,7 @@ public class Shooter extends SubsystemBase {
         if (controller.getStartButton()) {
             turnOn();
         }
+
+        System.out.println("X:" + String.valueOf(currentX) + " Y:" + String.valueOf(currentY));
     }
 }

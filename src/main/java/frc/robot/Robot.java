@@ -19,16 +19,19 @@ import edu.wpi.first.wpilibj.XboxController;
 public class Robot extends TimedRobot {
   private static final Shooter shooter = new Shooter();
   private static final XboxController controller = new XboxController(Constants.OperatorConstants.driverControllerPort);
-  
+
+  private static double x;
+  private static double y;  
+
   enum TuneMode {
     SHOOTER_TUNING,
     INTAKE_TUNING,
     DRIVETRAIN_TUNING,
-    COMPLETE_TUNING,
-    DEFAULT
+    DEFAULT, // doesn't allow for tuning mode selection
+    SELECTING // allows for tuning mode selection
   }
 
-  private static TuneMode tuneMode = TuneMode.DEFAULT;
+  private static TuneMode tuneMode = TuneMode.SELECTING;
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -88,6 +91,12 @@ public class Robot extends TimedRobot {
     if(controller.getBButton()) {
       shooter.decreasePower();
     }
+    if (controller.getStartButton()) {
+      shooter.turnOn();
+    }
+    if (controller.getBackButton()) {
+      shooter.turnOff();
+    }
   }
 
   /** This function is called once each time the robot enters testing mode. */
@@ -100,40 +109,41 @@ public class Robot extends TimedRobot {
   /** This function is called periodically during test mode. */
   @Override
   public void testPeriodic() {
-    if (controller.getAButtonPressed()) {
-      tuneMode = TuneMode.DRIVETRAIN_TUNING;
+    if (tuneMode == TuneMode.SELECTING) {
+      if (controller.getAButtonPressed()) {
+        tuneMode = TuneMode.DRIVETRAIN_TUNING;
+      }
+      if (controller.getBButtonPressed()) {
+        tuneMode = TuneMode.SHOOTER_TUNING;
+      }
+      if (controller.getXButtonPressed()) {
+        tuneMode = TuneMode.INTAKE_TUNING;
+      }
+      if (controller.getYButtonPressed()) {
+        tuneMode = TuneMode.DEFAULT;
+      }
     }
-    if (controller.getBButtonPressed()) {
-      tuneMode = TuneMode.SHOOTER_TUNING;
+
+    if (controller.getRightStickButton()) {
+      tuneMode = TuneMode.SELECTING;
     }
-    if (controller.getXButtonPressed()) {
-      tuneMode = TuneMode.INTAKE_TUNING;
-    }
-    if (controller.getYButtonPressed()) {
-      tuneMode = TuneMode.DEFAULT;
+    if (tuneMode == TuneMode.SELECTING) {
+      return;
     }
 
     switch (tuneMode) {
       case DRIVETRAIN_TUNING:
-        
+        // insert your code for testing here(feel free to delete if u don't want this)
         break;
       case SHOOTER_TUNING:
-        shooter.tuningPeriodic(controller, 0, 0);
+        shooter.tuningPeriodic(controller, x, y);
         break;
       case INTAKE_TUNING:
-        
+        // insert your code for testing here(feel free to delete if u don't want this)
         break;
       default:
 
         break;
     }
   }
-
-  /** This function is called once when the robot is first started up in a simulation. */
-  @Override
-  public void simulationInit() {}
-
-  /** This function is called periodically whilst in simulation. */
-  @Override
-  public void simulationPeriodic() {}
 }
