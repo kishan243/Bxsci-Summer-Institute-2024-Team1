@@ -82,10 +82,10 @@ public class Robot extends TimedRobot {
   public void teleopPeriodic() {
     // Configures button bindings for shooter
     if(controller.getAButton()) {
-      shooter.IncreasePower();
+      shooter.increasePower();
     }
     if(controller.getBButton()) {
-      shooter.DecreasePower();
+      shooter.decreasePower();
     }
   }
 

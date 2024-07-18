@@ -25,54 +25,37 @@ public class Shooter extends SubsystemBase {
 
     private double power;
     private double increment;
-
-    private State status;
-    private enum State {
-        ON,OFF
-    }
     
     public double CalculatePower(double currentX, double currentY) {
-        double xDistanceFromCell = Math.pow(currentX - Constants.FieldConstants.boxX,2);
-        double yDistanceFromCell = Math.pow(currentY - Constants.FieldConstants.boxY,2);
-        double distanceFromCell = Math.sqrt(xDistanceFromCell + yDistanceFromCell);
+        double xDistanceFromBank = Math.pow(currentX - Constants.FieldConstants.boxX,2);
+        double yDistanceFromBank = Math.pow(currentY - Constants.FieldConstants.boxY,2);
+        double distanceFromBank = Math.sqrt( xDistanceFromBank +  yDistanceFromBank);
 
-        double cpower = distanceFromCell/ShooterConstants.testingDistance * ShooterConstants.testingPower;
+        double cpower = distanceFromBank/ShooterConstants.testingDistance * ShooterConstants.testingPower;
         return cpower;
     }
-    
-    public void IncreasePower() {
+
+    public void increasePower() {
         // increase power
         power += increment;
-        UpdatePower();
+        updatePower();
     }
-    public void DecreasePower() {
+    public void decreasePower() {
         // decrease power
         power -= increment;
-        UpdatePower();
+        updatePower();
     }
     
     
     public void turnOn() {
         // turn on motor
-        status = State.ON;
-        UpdatePower();
+        updatePower();
     }
     public void turnOff() {
         // turn off motor
-        status = State.OFF;
-        UpdatePower();
+        motor.stopMotor();
     }
-    public void UpdatePower() {
-        // updates power based on new power and or status values
-        if (status == State.OFF) {
-            motor.set(0);
-        }
-        
-        if (status == State.ON) {
-            motor.set(power);
-        }
-
-        // logs motor output
-        System.out.println(motor.get());
+    public void updatePower() {
+        motor.set(power);
     }
 }
