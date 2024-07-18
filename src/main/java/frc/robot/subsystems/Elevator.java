@@ -24,24 +24,22 @@ public class Elevator extends SubsystemBase{
     // CANSparkMax elevator = new CANSparkMax(Constants.IntakeConstants.elevatorPort, MotorType.kBrushless);
     DigitalInput beamBreak = new DigitalInput(Ports.beamBreakEntrancePort);
     // Starts the intake
-    public Command runIntake() {
-        return run(
-            () -> roller.set(1)
-        ).finallyDo(
-            () -> roller.set(0)
-        );
-    }
+
     // Starts the elevator
     public Command runElevator() {
-        return run(
-            () -> elevator.set(1)
-        ).finallyDo(
-            () -> elevator.set(0)
-        );
+        return runMotor(elevator);
     }
 
     public boolean getBeamBreak(){
         return this.beamBreak.get();
+    }
+
+    private Command runMotor(CANSparkMax motor) {
+        return run(
+            () -> motor.set(1)
+        ).finallyDo(
+            () -> motor.set(0)
+        );
     }
 
 // if true then it is not broken

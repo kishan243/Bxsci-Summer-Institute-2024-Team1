@@ -14,6 +14,7 @@ public class Intake extends SubsystemBase {
     CANSparkMax roller = new CANSparkMax(Constants.IntakeConstants.rollerPort, MotorType.kBrushless);
     CANSparkMax pivot = new CANSparkMax(Constants.IntakeConstants.pivotPort, MotorType.kBrushless);
     CANSparkMax elevator = new CANSparkMax(Constants.IntakeConstants.elevatorPort, MotorType.kBrushless);
+    DigitalInput beamBreak = new DigitalInput(Ports.beamBreakEntrancePort);
 
     public Intake() {
         pivotEncoder = pivot.getAbsoluteEncoder();
@@ -78,10 +79,11 @@ public class Intake extends SubsystemBase {
 //         );
 //     }
 
-    public Command detectForElevation () {
-        DigitalInput input = new DigitalInput(0);
-        input.get();
-    }
+    // public Command detectForElevation () {
+    //     DigitalInput beamBreak = new DigitalInput(Ports.beamBreakEntrancePort);
+    //     beamBreak.get();
+    //     if (beamBreak.get() == true)
+    // }
 
   @Override
   public void periodic() {

@@ -7,6 +7,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.Intake;
@@ -68,15 +69,19 @@ public class Robot extends TimedRobot {
       m_autonomousCommand.cancel();
     }
 // controller inputs 
-    controller.x().onTrue(intake.toggleExtension()); //extend & retract
-    controller.y().whileTrue(
-       intake.runIntake().alongWith(elevator.intakeBrake())); // intake toggle
-    // // controller.a().whileTrue(elevate.runElevate()); //elevator toggle
+    
   }
 
   /** This function is called periodically during operator control. */
   @Override
   public void teleopPeriodic() {
+    controller.a().whileTrue(
+      Commands.sequence(
+        intake.extend()
+        .alongWith(intake.runIntake())
+        .alongWith(elevator.intakeBrake())
+      )
+    );
   }
 
   @Override

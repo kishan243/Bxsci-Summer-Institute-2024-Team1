@@ -2,6 +2,8 @@ package frc.robot.subsystems;
 
 import java.util.function.BooleanSupplier;
 
+import javax.sound.midi.Sequence;
+
 import com.revrobotics.AbsoluteEncoder;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkLowLevel.MotorType;
@@ -27,21 +29,6 @@ public class Intake extends SubsystemBase {
 
     public Intake() {
         pivotEncoder = pivot.getAbsoluteEncoder();
-    }
-
-// Toggles the extension motor
-    public Command toggleExtension() {
-        return runOnce(
-            () -> {
-                if (isExtended.getAsBoolean()) {
-                retract();
-                extended = false;
-            } else {
-                extend();
-                extended = true;
-            } 
-            }
-        );
     }
 
 
@@ -73,14 +60,7 @@ public class Intake extends SubsystemBase {
             () -> roller.set(0)
         );
     }
-// Starts the elevator
-    public Command runElevator() {
-        return run(
-            () -> elevator.set(1)
-        ).finallyDo(
-            () -> elevator.set(0)
-        );
-    }
+
 
 
 // // Starts the elevator
