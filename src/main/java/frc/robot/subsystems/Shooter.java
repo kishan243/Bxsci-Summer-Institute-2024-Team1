@@ -24,9 +24,13 @@ public class Shooter extends SubsystemBase {
     private final CANSparkMax motor = new CANSparkMax(ShooterConstants.motorPort, MotorType.kBrushless);
 
     private double power;
-    private double increment;
     
-    public double CalculatePower(double currentX, double currentY) {
+    /**
+     * @param currentX
+     * @param currentY
+     * @return 
+     */
+    public double calculatePower(double currentX, double currentY) {
         double xDistanceFromBank = Math.pow(currentX - Constants.FieldConstants.boxX,2);
         double yDistanceFromBank = Math.pow(currentY - Constants.FieldConstants.boxY,2);
         double distanceFromBank = Math.sqrt( xDistanceFromBank +  yDistanceFromBank);
@@ -37,16 +41,14 @@ public class Shooter extends SubsystemBase {
 
     public void increasePower() {
         // increase power
-        power += increment;
+        power += 0.1;
         updatePower();
     }
     public void decreasePower() {
         // decrease power
-        power -= increment;
+        power -= 0.1;
         updatePower();
     }
-    
-    
     public void turnOn() {
         // turn on motor
         updatePower();
