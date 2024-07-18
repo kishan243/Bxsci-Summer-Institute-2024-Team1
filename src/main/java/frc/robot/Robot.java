@@ -34,7 +34,6 @@ public class Robot extends TimedRobot {
    * This function is run when the robot is first started up and should be used for any
    * initialization code.
    */
-
   @Override
   public void robotInit() {}
 
@@ -58,10 +57,11 @@ public class Robot extends TimedRobot {
   @Override
   public void disabledInit() {}
 
+  /** This function is called periodically during disabled mode. */
   @Override
   public void disabledPeriodic() {}
 
-  /** This runs the autonomous command */
+  /** This function is called once each time the robot enters autonomous mode. */
   @Override
   public void autonomousInit() {}
 
@@ -69,6 +69,7 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousPeriodic() {}
 
+  /** This function is called once each time the robot enters operator control. */
   @Override
   public void teleopInit() {
     // This makes sure that the autonomous stops running when
@@ -89,6 +90,7 @@ public class Robot extends TimedRobot {
     }
   }
 
+  /** This function is called once each time the robot enters testing mode. */
   @Override
   public void testInit() {
     // Cancels all running commands at the start of test mode.
@@ -98,12 +100,25 @@ public class Robot extends TimedRobot {
   /** This function is called periodically during test mode. */
   @Override
   public void testPeriodic() {
+    if (controller.getAButtonPressed()) {
+      tuneMode = TuneMode.DRIVETRAIN_TUNING;
+    }
+    if (controller.getBButtonPressed()) {
+      tuneMode = TuneMode.SHOOTER_TUNING;
+    }
+    if (controller.getXButtonPressed()) {
+      tuneMode = TuneMode.INTAKE_TUNING;
+    }
+    if (controller.getYButtonPressed()) {
+      tuneMode = TuneMode.DEFAULT;
+    }
+
     switch (tuneMode) {
       case DRIVETRAIN_TUNING:
         
         break;
       case SHOOTER_TUNING:
-        
+        shooter.tuningPeriodic(controller, 0, 0);
         break;
       case INTAKE_TUNING:
         
@@ -114,7 +129,7 @@ public class Robot extends TimedRobot {
     }
   }
 
-  /** This function is called once when the robot is first started up. */
+  /** This function is called once when the robot is first started up in a simulation. */
   @Override
   public void simulationInit() {}
 

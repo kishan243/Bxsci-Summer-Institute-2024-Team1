@@ -3,6 +3,7 @@ package frc.robot.subsystems;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkLowLevel.MotorType;
 
+import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import frc.robot.Constants.*;
@@ -25,10 +26,11 @@ public class Shooter extends SubsystemBase {
 
     private double power;
     
-    /**
-     * @param currentX
-     * @param currentY
-     * @return 
+    /** 
+     * calculates the amount of power neccesary to score the cell into the bank
+     * @param currentX the current X position of the robot on the field
+     * @param currentY the current Y position of the robot on the field
+     * @return the amount of power neccesary to score the cell into the bank
      */
     public double calculatePower(double currentX, double currentY) {
         double xDistanceFromBank = Math.pow(currentX - Constants.FieldConstants.boxX,2);
@@ -39,25 +41,59 @@ public class Shooter extends SubsystemBase {
         return cpower;
     }
 
+    /** 
+     * increases the launching power of the shooter
+     */
     public void increasePower() {
         // increase power
         power += 0.1;
         updatePower();
     }
+
+    /** 
+     * decreases the launching power of the shooter
+     */
     public void decreasePower() {
         // decrease power
         power -= 0.1;
         updatePower();
     }
+
+    /** 
+     * turns on the motor
+     */
     public void turnOn() {
         // turn on motor
         updatePower();
     }
+
+    /** 
+     * turns off the motor
+     */
     public void turnOff() {
         // turn off motor
         motor.stopMotor();
     }
+
+    /** 
+     * Updates the motor's power
+     */
     public void updatePower() {
         motor.set(power);
+    }
+
+    /** 
+     * Called periodically when tuning the robot
+     */
+    public void tuningPeriodic(XboxController controller, double currentX, double currentY) {
+        if (controller.getRightBumperPressed()) {increasePower();}
+        if (controller.getLeftBumperPressed()) {decreasePower();}
+        
+        if (controller.getBackButton()) {
+            turnOff();
+        }
+        if (controller.getStartButton()) {
+            turnOn();
+        }
     }
 }
