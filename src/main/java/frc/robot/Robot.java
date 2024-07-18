@@ -81,12 +81,6 @@ public class Robot extends TimedRobot {
     if(controller.getBButton()) {
       shooter.decreasePower();
     }
-    if(controller.getXButton()) {
-      shooter.increaseIncrement();
-    }
-    if(controller.getYButton()) {
-      shooter.decreaseIncrement();
-    }
   }
 
   @Override

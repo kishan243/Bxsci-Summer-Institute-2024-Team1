@@ -24,7 +24,6 @@ public class Shooter extends SubsystemBase {
     private final CANSparkMax motor = new CANSparkMax(ShooterConstants.motorPort, MotorType.kBrushless);
 
     private double power;
-    private double increment;
     
     /**
      * @param currentX
@@ -42,21 +41,13 @@ public class Shooter extends SubsystemBase {
 
     public void increasePower() {
         // increase power
-        power += increment;
+        power += 0.1;
         updatePower();
     }
     public void decreasePower() {
         // decrease power
-        power -= increment;
+        power -= 0.1;
         updatePower();
-    }
-    public void increaseIncrement() {
-        // increase power increment
-        increment += 0.1;
-    }
-    public void decreaseIncrement() {
-        // decrease power increment
-        increment -= 0.1;
     }
     public void turnOn() {
         // turn on motor
