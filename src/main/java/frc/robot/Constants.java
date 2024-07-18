@@ -25,14 +25,6 @@ public final class Constants {
     public static final int elevatorPort = 0;
   }
 
-  public static class ShooterConstants {
-    public static final int motorPort = 0; //port constant for motor instantiation*
-    public static final double testingX = 1; //-
-    public static final double testingY = 2; //-
-    public static final double testingDistance = 2; //-
-    public static final double testingPower = 0.5; //-
-  }
-
   public static class FieldConstants {
     public static final double boxX = 1;// centered at the middle of the power bank //-
     public static final double boxY = 1;// centered at the middle of the power bank //-
