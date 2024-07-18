@@ -26,9 +26,9 @@ public class Shooter extends SubsystemBase {
     private double power;
     
     /**
-     * @param currentX
-     * @param currentY
-     * @return 
+     * @param currentX current x value of position of robot (requires drivetrain to provide value)
+     * @param currentY current y value of position of robot (requires drivetrain to provide value)
+     * @return returns the power needed to shoot robot
      */
     public double calculatePower(double currentX, double currentY) {
         double xDistanceFromBank = Math.pow(currentX - Constants.FieldConstants.boxX,2);
