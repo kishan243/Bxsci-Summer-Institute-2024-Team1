@@ -76,16 +76,16 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     if(controller.getAButton()) {
-      shooter.IncreasePower();
+      shooter.increasePower();
     }
     if(controller.getBButton()) {
-      shooter.DecreasePower();
+      shooter.decreasePower();
     }
     if(controller.getXButton()) {
-      shooter.IncreaseIncrement();
+      shooter.increaseIncrement();
     }
     if(controller.getYButton()) {
-      shooter.DecreaseIncrement();
+      shooter.decreaseIncrement();
     }
   }
 

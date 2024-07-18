@@ -34,22 +34,22 @@ public class Shooter extends SubsystemBase {
         double cpower = distanceFromBank/ShooterConstants.testingDistance * ShooterConstants.testingPower;
         return cpower;
     }
-    
-    public void IncreasePower() {
+
+    public void increasePower() {
         // increase power
         power += increment;
         updatePower();
     }
-    public void DecreasePower() {
+    public void decreasePower() {
         // decrease power
         power -= increment;
         updatePower();
     }
-    public void IncreaseIncrement() {
+    public void increaseIncrement() {
         // increase power increment
         increment += 0.1;
     }
-    public void DecreaseIncrement() {
+    public void decreaseIncrement() {
         // decrease power increment
         increment -= 0.1;
     }
