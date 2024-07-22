@@ -24,9 +24,6 @@ public final class Constants {
     public static final double startPoint = 0; 
     public static final int elevatorPort = 0;
   }
-  public static class DriveConstants {
-    public static final double DISTANCE_PER_DEGREE = 0;
-  }
   
   public static class FieldConstants {
     public static final double boxX = 1;// centered at the middle of the power bank //-

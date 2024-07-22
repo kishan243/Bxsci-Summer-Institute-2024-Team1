@@ -74,7 +74,7 @@ public class Shooter extends SubsystemBase {
      * @param velocity the target speed of the motor
      */
     public Command setVelocity(double velocity) {
-        return run(() -> motor.setVoltage(pid.calculate(getVelocity(), velocity)));
+        return run(() ->motor.setVoltage(pid.calculate(getVelocity(), velocity)));
     }
 
     /**
@@ -85,8 +85,10 @@ public class Shooter extends SubsystemBase {
      * @return a command that updates the speed of the motor based on the position
      *         of the robot
      */
-    public Command updateVelocity(double x, double y) {
-        return run(() -> setVelocity(calcVelocity(x, y)));
+    public double updateVelocity(double x, double y) {
+        double voltage = pid.calculate(getVelocity(), calcVelocity(x, y));
+        motor.setVoltage(voltage);
+        return voltage;
     }
 
 }

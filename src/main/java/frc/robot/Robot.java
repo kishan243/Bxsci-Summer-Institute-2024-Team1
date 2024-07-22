@@ -8,10 +8,10 @@ import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-import frc.robot.subsystems.Drive;
-import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
+import frc.robot.commands.ShootCommand;
+import frc.robot.drivetrain.Drivetrain;
 import frc.robot.shooter.Shooter;
 
 /**
@@ -25,7 +25,7 @@ import frc.robot.shooter.Shooter;
  */
 public class Robot extends TimedRobot {
   private static final Shooter shooter = new Shooter();
-  private static final Drive drive = new Drive();
+  private static final Drivetrain drivetrain = new Drivetrain();
   private static final CommandXboxController controller = new CommandXboxController(
       Constants.OperatorConstants.driverControllerPort);
 
@@ -90,14 +90,15 @@ public class Robot extends TimedRobot {
     // continue until interrupted by another command, remove
     // this line or comment it out.
 
-    Trigger A = controller.a();
-    A.onTrue(shooter.turnOff());
+    controller.a().onTrue(shooter.turnOff());
+
+    controller.b().onTrue(new ShootCommand(drivetrain,shooter,position)); // replace with beambrake sensor
   }
 
   /** This function is called periodically during operator control. */
   @Override
   public void teleopPeriodic() {
-    drive.drive(controller.getLeftY(), controller.getRightY());
+    drivetrain.drive(controller.getLeftY(), controller.getRightY());
     shooter.updateVelocity(position.getX(), position.getY());
   }
 
