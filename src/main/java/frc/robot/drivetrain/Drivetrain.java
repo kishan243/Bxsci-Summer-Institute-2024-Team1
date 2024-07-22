@@ -29,10 +29,14 @@ public class Drivetrain extends SubsystemBase {
 
     public State state;
 
-    public Drivetrain(){
-        rightLeader.setInverted(true);
+    public Drivetrain() {
         leftFollower.follow(leftLeader);
         rightFollower.follow(rightLeader);
+
+        rightLeader.burnFlash();
+        rightFollower.burnFlash();
+        leftLeader.burnFlash();
+        leftFollower.burnFlash();
     }
 
     public void drive(double leftSpeed, double rightSpeed) {
@@ -40,8 +44,8 @@ public class Drivetrain extends SubsystemBase {
             return;
         }
 
-        leftLeader.set(leftSpeed);
-        rightLeader.set(rightSpeed);
+        leftLeader.set(Math.copySign(Math.pow(leftSpeed, 2), leftSpeed));
+        rightLeader.set(Math.copySign(Math.pow(rightSpeed, 2), -rightSpeed));
 
         state = State.DRIVING;
     }
