@@ -14,7 +14,7 @@ package frc.robot;
  */
 public final class Constants {
   public static class OperatorConstants {
-    public static final int kDriverControllerPort = 0;
+    public static final int driverControllerPort = 0;
   }
    
   public static class IntakeConstants {
@@ -24,5 +24,11 @@ public final class Constants {
     public static final double startPoint = 0; 
     public static final int elevatorPort = 0;
   }
+  
+  public static class FieldConstants {
+    public static final double boxX = 1;// centered at the middle of the power bank //-
+    public static final double boxY = 1;// centered at the middle of the power bank //-
+  }
 }
 
+// "//-" indicates that the constant needs to be tuned

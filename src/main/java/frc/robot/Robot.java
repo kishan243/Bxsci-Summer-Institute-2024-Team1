@@ -4,11 +4,15 @@
 
 package frc.robot;
 
+import edu.wpi.first.math.geometry.Pose2d;
+import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-import frc.robot.subsystems.Drive;
-import edu.wpi.first.wpilibj.XboxController;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
+import edu.wpi.first.wpilibj2.command.button.Trigger;
+import frc.robot.commands.ShootCommand;
+import frc.robot.drivetrain.Drivetrain;
+import frc.robot.shooter.Shooter;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -20,8 +24,12 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * project.
  */
 public class Robot extends TimedRobot {
-  private Drive drive = new Drive();
-  private XboxController controller = new XboxController(0);
+  private static final Shooter shooter = new Shooter();
+  private static final Drivetrain drivetrain = new Drivetrain();
+  private static final CommandXboxController controller = new CommandXboxController(
+      Constants.OperatorConstants.driverControllerPort);
+
+  private static Pose2d position = new Pose2d(0, 0, new Rotation2d());
 
   /**
    * This function is run when the robot is first started up and should be used
@@ -30,9 +38,6 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
-    // Instantiate our RobotContainer. This will perform all our button bindings,
-    // and put our
-    // autonomous chooser on the dashboard.
   }
 
   /**
@@ -62,17 +67,14 @@ public class Robot extends TimedRobot {
   public void disabledInit() {
   }
 
+  /** This function is called periodically during disabled mode. */
   @Override
   public void disabledPeriodic() {
   }
 
-  /**
-   * This autonomous runs the autonomous command selected by your
-   * {@link RobotContainer} class.
-   */
+  /** This function is called once each time the robot enters autonomous mode. */
   @Override
   public void autonomousInit() {
-
   }
 
   /** This function is called periodically during autonomous. */
@@ -80,6 +82,7 @@ public class Robot extends TimedRobot {
   public void autonomousPeriodic() {
   }
 
+  /** This function is called once each time the robot enters operator control. */
   @Override
   public void teleopInit() {
     // This makes sure that the autonomous stops running when
@@ -87,17 +90,19 @@ public class Robot extends TimedRobot {
     // continue until interrupted by another command, remove
     // this line or comment it out.
 
+    controller.a().onTrue(shooter.turnOff());
+
+    controller.b().onTrue(new ShootCommand(drivetrain,shooter,position)); // replace with beambrake sensor
   }
 
   /** This function is called periodically during operator control. */
   @Override
   public void teleopPeriodic() {
-    drive.drive(controller.getLeftY(), controller.getRightY());
-    SmartDashboard.putNumber("Left", controller.getLeftY());
-    SmartDashboard.putNumber("right", controller.getRightY());
-
+    drivetrain.drive(controller.getLeftY(), controller.getRightY());
+    shooter.updateVelocity(position.getX(), position.getY());
   }
 
+  /** This function is called once each time the robot enters testing mode. */
   @Override
   public void testInit() {
     // Cancels all running commands at the start of test mode.
@@ -107,15 +112,5 @@ public class Robot extends TimedRobot {
   /** This function is called periodically during test mode. */
   @Override
   public void testPeriodic() {
-  }
-
-  /** This function is called once when the robot is first started up. */
-  @Override
-  public void simulationInit() {
-  }
-
-  /** This function is called periodically whilst in simulation. */
-  @Override
-  public void simulationPeriodic() {
   }
 }
