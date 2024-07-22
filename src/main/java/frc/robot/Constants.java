@@ -12,14 +12,15 @@ package frc.robot;
  * <p>It is advised to statically import this class (or one of its inner classes) wherever the
  * constants are needed, to reduce verbosity.
  */
+
 public final class Constants {
   public static class OperatorConstants {
     public static final int driverControllerPort = 0;
   }
-   
+
+  
   public static class IntakeConstants {
-    public static final int rollerPort = 0; //port constants for motor instantiation
-    public static final int pivotPort = 0;
+    // public static final int elevatorPort = 0;
     public static final double stopPoint = 0; //encoder constants for extend() and retract() respsectively
     public static final double startPoint = 0; 
     public static final int elevatorPort = 0;
@@ -30,5 +31,3 @@ public final class Constants {
     public static final double boxY = 1;// centered at the middle of the power bank //-
   }
 }
-
-// "//-" indicates that the constant needs to be tuned
