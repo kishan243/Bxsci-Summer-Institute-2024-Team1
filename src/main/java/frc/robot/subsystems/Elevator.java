@@ -45,7 +45,7 @@ public class Elevator extends SubsystemBase{
 // if true then it is not broken
 // if false then it is broken
 // purely for intaking process
-    public Command intakeBrake() {
+    public Command elevatorBrake() {
         if (beamBreak.get() == true) {
             return runElevator();
         }
