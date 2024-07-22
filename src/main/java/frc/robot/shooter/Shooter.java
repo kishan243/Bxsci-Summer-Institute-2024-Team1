@@ -8,7 +8,7 @@ import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
-import frc.robot.Ports;
+import static frc.robot.Ports.Shooter.*;
 import static frc.robot.shooter.ShooterConstants.*;
 
 // The shooter is to be manually tuned once the robot is all set and working.
@@ -23,7 +23,7 @@ import static frc.robot.shooter.ShooterConstants.*;
 // into the square. Therefore we just have to aim for the orgin
 
 public class Shooter extends SubsystemBase {
-    private final CANSparkMax motor = new CANSparkMax(Ports.motorPort, MotorType.kBrushless);
+    private final CANSparkMax motor = new CANSparkMax(motorPort, MotorType.kBrushless);
     private final AbsoluteEncoder encoder = motor.getAbsoluteEncoder();
     private final PIDController pid = new PIDController(kP, kI, kD);
 
