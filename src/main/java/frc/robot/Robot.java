@@ -4,72 +4,83 @@
 
 package frc.robot;
 
+import edu.wpi.first.math.geometry.Pose2d;
+import edu.wpi.first.math.geometry.Pose3d;
+import edu.wpi.first.math.geometry.Rotation2d;
+import edu.wpi.first.math.geometry.Rotation3d;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
+import edu.wpi.first.wpilibj2.command.button.Trigger;
+import frc.robot.shooter.Shooter;
 import edu.wpi.first.wpilibj.XboxController;
 
-
 /**
- * The VM is configured to automatically run this class, and to call the functions corresponding to
- * each mode, as described in the TimedRobot documentation. If you change the name of this class or
- * the package after creating this project, you must also update the build.gradle file in the
+ * The VM is configured to automatically run this class, and to call the
+ * functions corresponding to
+ * each mode, as described in the TimedRobot documentation. If you change the
+ * name of this class or
+ * the package after creating this project, you must also update the
+ * build.gradle file in the
  * project.
  */
 public class Robot extends TimedRobot {
   private static final Shooter shooter = new Shooter();
-  private static final XboxController controller = new XboxController(Constants.OperatorConstants.driverControllerPort);
+  private static final CommandXboxController controller = new CommandXboxController(
+      Constants.OperatorConstants.driverControllerPort);
 
-  private static double x;
-  private static double y;  
-
-  enum TuneMode {
-    SHOOTER_TUNING,
-    INTAKE_TUNING,
-    DRIVETRAIN_TUNING,
-    DEFAULT, // doesn't allow for tuning mode selection
-    SELECTING // allows for tuning mode selection
-  }
-
-  private static TuneMode tuneMode = TuneMode.SELECTING;
+  private static Pose2d position = new Pose2d(0, 0, new Rotation2d());
 
   /**
-   * This function is run when the robot is first started up and should be used for any
+   * This function is run when the robot is first started up and should be used
+   * for any
    * initialization code.
    */
   @Override
-  public void robotInit() {}
+  public void robotInit() {
+  }
 
   /**
-   * This function is called every 20 ms, no matter the mode. Use this for items like diagnostics
+   * This function is called every 20 ms, no matter the mode. Use this for items
+   * like diagnostics
    * that you want ran during disabled, autonomous, teleoperated and test.
    *
-   * <p>This runs after the mode specific periodic functions, but before LiveWindow and
+   * <p>
+   * This runs after the mode specific periodic functions, but before LiveWindow
+   * and
    * SmartDashboard integrated updating.
    */
   @Override
   public void robotPeriodic() {
-    // Runs the Scheduler.  This is responsible for polling buttons, adding newly-scheduled
-    // commands, running already-scheduled commands, removing finished or interrupted commands,
-    // and running subsystem periodic() methods.  This must be called from the robot's periodic
+    // Runs the Scheduler. This is responsible for polling buttons, adding
+    // newly-scheduled
+    // commands, running already-scheduled commands, removing finished or
+    // interrupted commands,
+    // and running subsystem periodic() methods. This must be called from the
+    // robot's periodic
     // block in order for anything in the Command-based framework to work.
     CommandScheduler.getInstance().run();
   }
 
   /** This function is called once each time the robot enters Disabled mode. */
   @Override
-  public void disabledInit() {}
+  public void disabledInit() {
+  }
 
   /** This function is called periodically during disabled mode. */
   @Override
-  public void disabledPeriodic() {}
+  public void disabledPeriodic() {
+  }
 
   /** This function is called once each time the robot enters autonomous mode. */
   @Override
-  public void autonomousInit() {}
+  public void autonomousInit() {
+  }
 
   /** This function is called periodically during autonomous. */
   @Override
-  public void autonomousPeriodic() {}
+  public void autonomousPeriodic() {
+  }
 
   /** This function is called once each time the robot enters operator control. */
   @Override
@@ -78,24 +89,15 @@ public class Robot extends TimedRobot {
     // teleop starts running. If you want the autonomous to
     // continue until interrupted by another command, remove
     // this line or comment it out.
+
+    Trigger A = controller.a();
+    A.onTrue(shooter.turnOff());
   }
 
   /** This function is called periodically during operator control. */
   @Override
   public void teleopPeriodic() {
-    // Configures button bindings for shooter
-    if(controller.getAButton()) { // when a button pressed, increase power
-      shooter.increasePower();
-    }
-    if(controller.getBButton()) { // when b button pressed, decrease power
-      shooter.decreasePower();
-    }
-    if (controller.getStartButton()) { // when start button pressed, turn on shooter
-      shooter.turnOn();
-    }
-    if (controller.getBackButton()) { // when back button pressed, turn off shooter
-      shooter.turnOff();
-    }
+    shooter.updateVelocity(position.getX(), position.getY());
   }
 
   /** This function is called once each time the robot enters testing mode. */
@@ -108,41 +110,5 @@ public class Robot extends TimedRobot {
   /** This function is called periodically during test mode. */
   @Override
   public void testPeriodic() {
-    if (tuneMode == TuneMode.SELECTING) {
-      if (controller.getAButtonPressed()) {
-        tuneMode = TuneMode.DRIVETRAIN_TUNING;
-      }
-      if (controller.getBButtonPressed()) {
-        tuneMode = TuneMode.SHOOTER_TUNING;
-      }
-      if (controller.getXButtonPressed()) {
-        tuneMode = TuneMode.INTAKE_TUNING;
-      }
-      if (controller.getYButtonPressed()) {
-        tuneMode = TuneMode.DEFAULT;
-      }
-    }
-
-    if (controller.getRightStickButton()) {
-      tuneMode = TuneMode.SELECTING;
-    }
-    if (tuneMode == TuneMode.SELECTING) {
-      return;
-    }
-
-    switch (tuneMode) {
-      case DRIVETRAIN_TUNING:
-        // insert your code for testing here(feel free to delete if u don't want this)
-        break;
-      case SHOOTER_TUNING:
-        shooter.tuningPeriodic(controller, x, y);
-        break;
-      case INTAKE_TUNING:
-        // insert your code for testing here(feel free to delete if u don't want this)
-        break;
-      default:
-
-        break;
-    }
   }
 }
