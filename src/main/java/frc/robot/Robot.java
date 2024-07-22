@@ -92,7 +92,7 @@ public class Robot extends TimedRobot {
     }
     if (controller.getStartButton()) { // when start button pressed, turn on shooter
       shooter.turnOn();
-    }
+    } 
     if (controller.getBackButton()) { // when back button pressed, turn off shooter
       shooter.turnOff();
     }
