@@ -24,5 +24,9 @@ public final class Constants {
     public static final double startPoint = 0; 
     public static final int elevatorPort = 0;
   }
+
+  public static class DriveConstants {
+    public static final double DISTANCE_PER_DEGREE = 0;
+  }
 }
 
