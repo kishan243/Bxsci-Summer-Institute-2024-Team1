@@ -1,6 +1,5 @@
 package frc.robot.drivetrain;
 
-import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import com.revrobotics.CANSparkMax;
@@ -8,6 +7,8 @@ import static com.revrobotics.CANSparkLowLevel.MotorType.*;
 import static frc.robot.drivetrain.DrivetrainConstants.*;
 
 import edu.wpi.first.math.controller.PIDController;
+import edu.wpi.first.units.Distance;
+import edu.wpi.first.units.Measure;
 import edu.wpi.first.wpilibj.Encoder;
 
 public class Drivetrain extends SubsystemBase {
@@ -50,11 +51,24 @@ public class Drivetrain extends SubsystemBase {
         state = State.DRIVING;
     }
 
-    // dw about all of this - Ankit
+    /**
+     * updates voltage based on PID in order to drive a certain distance
+     * @return voltage of the motors
+     */
+    public double driveDistance(Measure<Distance> meters) {
+        double voltage = 0;
+
+        // code to calculate voltage that needs to be applied-
+        // in order to move a certain distance
+        // hint: use PID
+
+        return voltage;
+    }
+
 
     /**
-     * updates voltage based on PID in order to fufill rotation command
-     * @param degrees degrees to rotate robot(counter-clockwise)
+     * updates voltage based on PID in order to fufill rotation command.
+     * @param degrees degrees to rotate robot(counter-clockwise).
      */
     public double updateDirection(double x, double y) {
         double degrees = 0;

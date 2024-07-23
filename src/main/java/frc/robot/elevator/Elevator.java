@@ -1,4 +1,4 @@
-package frc.robot.subsystems;
+package frc.robot.elevator;
 
 import java.util.function.BooleanSupplier;
 
@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.Ports;
+import static frc.robot.Ports.Elevator.*;
 
 public class Elevator extends SubsystemBase{
     boolean extended = false;
@@ -18,11 +18,11 @@ public class Elevator extends SubsystemBase{
     // boolean elevated = false;
     // BooleanSupplier isElevated = () -> elevated;
     AbsoluteEncoder pivotEncoder;
-    CANSparkMax roller = new CANSparkMax(Ports.rollerPort, MotorType.kBrushless);
-    CANSparkMax pivot = new CANSparkMax(Ports.pivotPort, MotorType.kBrushless);
-    CANSparkMax elevator = new CANSparkMax(Ports.elevatorPort, MotorType.kBrushless);
+    CANSparkMax roller = new CANSparkMax(rollerPort, MotorType.kBrushless);
+    CANSparkMax pivot = new CANSparkMax(pivotPort, MotorType.kBrushless);
+    CANSparkMax elevator = new CANSparkMax(elevatorPort, MotorType.kBrushless);
     // CANSparkMax elevator = new CANSparkMax(Constants.IntakeConstants.elevatorPort, MotorType.kBrushless);
-    DigitalInput beamBreak = new DigitalInput(Ports.beamBreakEntrancePort);
+    DigitalInput beamBreak = new DigitalInput(beamBreakEntrancePort);
     // Starts the intake
 
     // Starts the elevator

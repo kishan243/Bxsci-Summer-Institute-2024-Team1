@@ -17,14 +17,6 @@ public final class Constants {
   public static class OperatorConstants {
     public static final int driverControllerPort = 0;
   }
-
-  
-  public static class IntakeConstants {
-    // public static final int elevatorPort = 0;
-    public static final double stopPoint = 0; //encoder constants for extend() and retract() respsectively
-    public static final double startPoint = 0; 
-    public static final int elevatorPort = 0;
-  }
   
   public static class FieldConstants {
     public static final double boxX = 1;// centered at the middle of the power bank //-
