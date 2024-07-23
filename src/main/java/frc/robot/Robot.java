@@ -27,8 +27,8 @@ import frc.robot.shooter.Shooter;
  * project.
  */
 public class Robot extends TimedRobot {
-  private Intake intake = new Intake();
-  private Elevator elevator = new Elevator();
+  private static final Intake intake = new Intake();
+  private static final Elevator elevator = new Elevator();
   private static final Shooter shooter = new Shooter();
   private static final Drivetrain drivetrain = new Drivetrain();
   private static final CommandXboxController controller = new CommandXboxController(
@@ -85,11 +85,11 @@ public class Robot extends TimedRobot {
         .alongWith(elevator.elevatorBrake())
       ) .finallyDo(() -> intake.retract())
     );
-    controller.a().onTrue(shooter.turnOff());
 
-    controller.b().onTrue(new ShootCommand(drivetrain,shooter,position)); // replace with beambrake sensor
-// controller inputs 
-    
+    controller.a().onTrue(shooter.turnOff());
+    if (elevator.getBeamBreak()) {
+      CommandScheduler.getInstance().schedule(new ShootCommand(drivetrain, shooter, position));
+    }
   }
 
   /** This function is called periodically during operator control. */
