@@ -23,6 +23,8 @@ public final class Constants {
   }
   
   public static class FieldConstants {
+    // 0,0 is at the center
+    
     public static final Measure<Distance> BankLength = Inches.of(36);
     public static final Measure<Distance> BankWidth = Inches.of(48);
 
