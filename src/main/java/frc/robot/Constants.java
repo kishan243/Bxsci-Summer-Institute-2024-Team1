@@ -24,6 +24,7 @@ public final class Constants {
   
   public static class FieldConstants {
     // 0,0 is at the center
+    //
     
     public static final Measure<Distance> BankLength = Inches.of(36);
     public static final Measure<Distance> BankWidth = Inches.of(48);
@@ -33,11 +34,22 @@ public final class Constants {
 
     public static final Measure<Distance> fieldLength = Inches.of(312);
     public static final Measure<Distance> fieldWidth = Inches.of(180);
+    //dimensions of field
 
     public static final Measure<Distance> fieldX = Inches.of(156);
     public static final Measure<Distance> fieldY = Inches.of(90);
+    //total field length & width divided by two -> midpoint
 
     public static final Measure<Distance> humanPlayerZoneLength = Inches.of(24);
     public static final Measure<Distance> humanPlayerZoneWidth = Inches.of(36);
+
+    public static final Measure<Distance> cellBankZoneLength = Inches.of(87);
+    public static final Measure<Distance> cellBankZoneWidth = Inches.of(180);
+
+    public static final Measure<Distance> midZoneLength = Inches.of(68);
+    public static final Measure<Distance> midZoneWidth = Inches.of(180);
+
+    public static final Measure<Distance> endZoneLength = Inches.of(155);
+    public static final Measure<Distance> endZoneWidth = Inches.of(180);
   }
 }
