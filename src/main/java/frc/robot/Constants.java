@@ -24,20 +24,32 @@ public final class Constants {
   
   public static class FieldConstants {
     // 0,0 is at the center
-    
+
+    // -90,156 is at the top left
+    // 90,156 is at the top right
+
+    // -90, -156 is at the bottom left
+    // 90, -156 is at the bottom right
+
+    // positive Y is up the field
+    // positive X is to the right
+
     public static final Measure<Distance> BankLength = Inches.of(36);
     public static final Measure<Distance> BankWidth = Inches.of(48);
 
-    public static final Measure<Distance> bankX = Inches.of(24);
-    public static final Measure<Distance> bankY = Inches.of(156);
+    public static final Measure<Distance> bankX = Inches.of(132);
+    public static final Measure<Distance> bankY = Inches.of(90);
 
     public static final Measure<Distance> fieldLength = Inches.of(312);
     public static final Measure<Distance> fieldWidth = Inches.of(180);
 
-    public static final Measure<Distance> fieldX = Inches.of(156);
-    public static final Measure<Distance> fieldY = Inches.of(90);
+    public static final Measure<Distance> fieldX = Inches.of(0);
+    public static final Measure<Distance> fieldY = Inches.of(0);
 
     public static final Measure<Distance> humanPlayerZoneLength = Inches.of(24);
     public static final Measure<Distance> humanPlayerZoneWidth = Inches.of(36);
+
+    public static final Measure<Distance> humanPlayerZoneX = Inches.of(90);
+    public static final Measure<Distance> humanPlayerZoneY = Inches.of(-156);
   }
 }
