@@ -1,9 +1,8 @@
 package frc.robot.shooter;
 
-import com.revrobotics.AbsoluteEncoder;
 import com.revrobotics.CANSparkMax;
+import com.revrobotics.RelativeEncoder;
 import com.revrobotics.CANSparkLowLevel.MotorType;
-
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -25,7 +24,7 @@ import static frc.robot.Constants.FieldConstants.*;
 
 public class Shooter extends SubsystemBase {
     private final CANSparkMax motor = new CANSparkMax(motorPort, MotorType.kBrushless);
-    private final AbsoluteEncoder encoder = motor.getAbsoluteEncoder();
+    private final RelativeEncoder encoder = motor.getEncoder(); // CHARLIE WHY DID YOU USE AN ABSOLUTE ENCODER YOU ABSOLUTE BUFFOON OF A MAN - michaela x. ?????? (wasn't meant in all caps)
     private final PIDController pid = new PIDController(kP, kI, kD);
 
     /**
