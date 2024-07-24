@@ -6,14 +6,10 @@ package frc.robot;
 
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
-import edu.wpi.first.util.function.BooleanConsumer;
 import edu.wpi.first.wpilibj.TimedRobot;
-import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
-import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
-import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.commands.ShootCommand;
 import frc.robot.drivetrain.Drivetrain;
 import frc.robot.elevator.Elevator;
@@ -74,6 +70,9 @@ public class Robot extends TimedRobot {
   /** This function is called periodically during autonomous. */
   @Override
   public void autonomousPeriodic() {
+    if (elevator.getBeamBreak()) {
+      CommandScheduler.getInstance().schedule(new ShootCommand(drivetrain, shooter, position));
+    }
   }
 
   @Override
@@ -86,10 +85,7 @@ public class Robot extends TimedRobot {
       ) .finallyDo(() -> intake.retract())
     );
 
-    controller.a().onTrue(shooter.turnOff());
-    if (elevator.getBeamBreak()) {
-      CommandScheduler.getInstance().schedule(new ShootCommand(drivetrain, shooter, position));
-    }
+    controller.b().onTrue(shooter.turnOff());
   }
 
   /** This function is called periodically during operator control. */
@@ -97,7 +93,10 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     drivetrain.drive(controller.getLeftY(), controller.getRightY());
-    shooter.updateVelocity(position.getX(), position.getY());
+
+    if (elevator.getBeamBreak()) {
+      CommandScheduler.getInstance().schedule(new ShootCommand(drivetrain, shooter, position));
+    }
   }
 
   /** This function is called once each time the robot enters testing mode. */

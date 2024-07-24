@@ -4,6 +4,10 @@
 
 package frc.robot;
 
+import edu.wpi.first.units.Distance;
+import edu.wpi.first.units.Measure;
+import static edu.wpi.first.units.Units.*;
+
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
  * constants. This class should not be used for any other purpose. All constants should be declared
@@ -19,7 +23,19 @@ public final class Constants {
   }
   
   public static class FieldConstants {
-    public static final double boxX = 1;// centered at the middle of the power bank //-
-    public static final double boxY = 1;// centered at the middle of the power bank //-
+    public static final Measure<Distance> BankLength = Inches.of(36);
+    public static final Measure<Distance> BankWidth = Inches.of(48);
+
+    public static final Measure<Distance> bankX = Inches.of(24);
+    public static final Measure<Distance> bankY = Inches.of(156);
+
+    public static final Measure<Distance> fieldLength = Inches.of(312);
+    public static final Measure<Distance> fieldWidth = Inches.of(180);
+
+    public static final Measure<Distance> fieldX = Inches.of(156);
+    public static final Measure<Distance> fieldY = Inches.of(90);
+
+    public static final Measure<Distance> humanPlayerZoneLength = Inches.of(24);
+    public static final Measure<Distance> humanPlayerZoneWidth = Inches.of(36);
   }
 }

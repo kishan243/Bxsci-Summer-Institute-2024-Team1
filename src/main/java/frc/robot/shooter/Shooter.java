@@ -7,9 +7,10 @@ import com.revrobotics.CANSparkLowLevel.MotorType;
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.Constants;
 import static frc.robot.Ports.Shooter.*;
 import static frc.robot.shooter.ShooterConstants.*;
+import static edu.wpi.first.units.Units.Inches;
+import static frc.robot.Constants.FieldConstants.*;
 
 // The shooter is to be manually tuned once the robot is all set and working.
 
@@ -37,8 +38,8 @@ public class Shooter extends SubsystemBase {
      * @return the amount of power neccesary to score the cell into the bank
      */
     public double calcVelocity(double currentX, double currentY) {
-        double xDistFromBank = Math.pow(currentX - Constants.FieldConstants.boxX, 2);
-        double yDistFromBank = Math.pow(currentY - Constants.FieldConstants.boxY, 2);
+        double xDistFromBank = Math.pow(currentX - bankX.in(Inches), 2);
+        double yDistFromBank = Math.pow(currentY - bankY.in(Inches), 2);
         double distFromBank = Math.sqrt(xDistFromBank + yDistFromBank);
 
         double cPower = distFromBank / ShooterConstants.testingDistance * ShooterConstants.testingPower;
