@@ -22,13 +22,13 @@ public class Drivetrain extends SubsystemBase {
 
     private final PIDController pidControllerRotation = new PIDController(1, 0, 1);
 
-    public enum State {
-        IDLE,
-        ROTATING,
-        DRIVING,
-    }
+    // public enum State {
+    //     IDLE,
+    //     ROTATING,
+    //     DRIVING,
+    // }
 
-    public State state;
+    // public State state;
 
     public Drivetrain() {
         leftFollower.follow(leftLeader);
@@ -41,14 +41,14 @@ public class Drivetrain extends SubsystemBase {
     }
 
     public void drive(double leftSpeed, double rightSpeed) {
-        if (state == State.ROTATING) {
-            return;
-        }
+        // if (state == State.ROTATING) {
+        //     return;
+        // }
 
         leftLeader.set(Math.copySign(Math.pow(leftSpeed, 2), leftSpeed));
         rightLeader.set(Math.copySign(Math.pow(rightSpeed, 2), -rightSpeed));
 
-        state = State.DRIVING;
+        // state = State.DRIVING;
     }
 
     /**
@@ -72,7 +72,7 @@ public class Drivetrain extends SubsystemBase {
      */
     public double updateDirection(double x, double y) {
         double degrees = 0;
-        state = State.ROTATING;
+        // state = State.ROTATING;
 
         double encoderValue = leftEncoder.get() + rightEncoder.get()/2;
         double voltage = pidControllerRotation.calculate(encoderValue/2, degrees * DISTANCE_PER_DEGREE);
@@ -80,9 +80,9 @@ public class Drivetrain extends SubsystemBase {
         leftLeader.setVoltage(-voltage);
         rightLeader.setVoltage(voltage);
 
-        if (voltage < 0.1) {
-            state = State.IDLE;
-        }
+        // if (voltage < 0.1) {
+        //     state = State.IDLE;
+        // }
 
         return voltage;
     }
