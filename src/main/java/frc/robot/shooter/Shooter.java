@@ -30,14 +30,15 @@ public class Shooter extends SubsystemBase {
     /**
      * calculates the amount of power neccesary to score the cell into the bank
      * 
-     * @param currentX the current X position of the robot on the field (requires
+     * @param x the current X position of the robot on the field (requires
      *                 drivetrain input)
-     * @param currentY the current Y position of the robot on the field (requires
+     * @param y the current Y position of the robot on the field (requires
      *                 drivetrain input)
      * @return the amount of power neccesary to score the cell into the bank
      */
-    public double calcVelocity(double currentX, double currentY) {
-        double velocity = 
+    public double calcVelocity(double x, double y) {
+        double velocity = Math.sqrt((GRAVITATIONAL_CONSTANT * Math.pow(x,2) * Math.pow(1/Math.cos(LAUNCH_ANGLE),2))/(2*(Math.tan(LAUNCH_ANGLE)*x-y)));
+        return velocity;
     }
 
     /**

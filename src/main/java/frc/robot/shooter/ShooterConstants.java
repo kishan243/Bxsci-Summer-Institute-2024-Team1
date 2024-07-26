@@ -11,6 +11,7 @@ public final class ShooterConstants {
     public static final double kD = 0;
 
     public static final double GRAVITATIONAL_CONSTANT = 9.81;
+    public static final double LAUNCH_ANGLE = 0; //convert angle from degrees to radians (if in degrees)
     
 
     public static final double voltageCommandEndThreshold = 0.1;
