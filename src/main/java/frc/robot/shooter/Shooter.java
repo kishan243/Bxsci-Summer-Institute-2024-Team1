@@ -90,5 +90,5 @@ public class Shooter extends SubsystemBase {
         motor.setVoltage(voltage);
         return voltage;
     }
-
+    
 }
