@@ -24,7 +24,9 @@ import static frc.robot.Constants.FieldConstants.*;
 
 public class Shooter extends SubsystemBase {
     private final CANSparkMax motor = new CANSparkMax(motorPort, MotorType.kBrushless);
-    private final RelativeEncoder encoder = motor.getEncoder(); // CHARLIE WHY DID YOU USE AN ABSOLUTE ENCODER YOU ABSOLUTE BUFFOON OF A MAN - michaela x. ?????? (wasn't meant in all caps)
+    private final RelativeEncoder encoder = motor.getEncoder(); // CHARLIE WHY DID YOU USE AN ABSOLUTE ENCODER YOU
+                                                                // ABSOLUTE BUFFOON OF A MAN - michaela x. ??????
+                                                                // (wasn't meant in all caps)
     private final PIDController pid = new PIDController(kP, kI, kD);
 
     /**
@@ -36,13 +38,8 @@ public class Shooter extends SubsystemBase {
      *                 drivetrain input)
      * @return the amount of power neccesary to score the cell into the bank
      */
-    public double calcVelocity(double currentX, double currentY) {
-        double xDistFromBank = Math.pow(currentX - bankX.in(Inches), 2);
-        double yDistFromBank = Math.pow(currentY - bankY.in(Inches), 2);
-        double distFromBank = Math.sqrt(xDistFromBank + yDistFromBank);
-
-        double cPower = distFromBank / ShooterConstants.testingDistance * ShooterConstants.testingPower;
-        return cPower;
+    public double calcVelocity(double x, double y) {
+        return G;
     }
 
     /**
@@ -74,7 +71,7 @@ public class Shooter extends SubsystemBase {
      * @param velocity the target speed of the motor
      */
     public Command setVelocity(double velocity) {
-        return run(() ->motor.setVoltage(pid.calculate(getVelocity(), velocity)));
+        return run(() -> motor.setVoltage(pid.calculate(getVelocity(), velocity)));
     }
 
     /**
@@ -90,5 +87,5 @@ public class Shooter extends SubsystemBase {
         motor.setVoltage(voltage);
         return voltage;
     }
-    
+
 }

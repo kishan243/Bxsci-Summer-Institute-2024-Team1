@@ -4,6 +4,8 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import com.revrobotics.CANSparkMax;
 import static com.revrobotics.CANSparkLowLevel.MotorType.*;
+import static edu.wpi.first.units.Units.Meters;
+import static frc.robot.Constants.FieldConstants.BANK_X;
 import static frc.robot.drivetrain.DrivetrainConstants.*;
 
 import edu.wpi.first.math.controller.PIDController;
@@ -58,10 +60,11 @@ public class Drivetrain extends SubsystemBase {
      * @param y y position of robot
      */
     public double updateDirection(double x, double y) {
-        double degrees = 0;
+        double degrees = Math.atan(BANK_X.in(Meters) - x / 156 - y);
+        double distance = degrees * TURNING_RADIUS * 2 * Math.PI/360;
 
         double encoderValue = leftEncoder.get() + rightEncoder.get()/2;
-        double voltage = pidControllerRotation.calculate(encoderValue/2, degrees * DISTANCE_PER_DEGREE);
+        double voltage = pidControllerRotation.calculate(encoderValue/2, distance);
         
         leftLeader.setVoltage(-voltage);
         rightLeader.setVoltage(voltage);
