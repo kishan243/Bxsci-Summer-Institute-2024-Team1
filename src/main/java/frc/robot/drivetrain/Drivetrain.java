@@ -19,8 +19,8 @@ public class Drivetrain extends SubsystemBase {
     private CANSparkMax rightLeader = new CANSparkMax(2, kBrushless);
     private CANSparkMax rightFollower = new CANSparkMax(3, kBrushless);
 
-    private Encoder leftEncoder = new Encoder(null, null);
-    private Encoder rightEncoder = new Encoder(null, null);
+    private Encoder leftEncoder = new Encoder(leftEncoderSourceA, leftEncoderSourceB);
+    private Encoder rightEncoder = new Encoder(RightEncoderSourceA, RightEncoderSourceB);
 
     private final PIDController pidControllerRotation = new PIDController(1, 0, 1);
 
@@ -45,7 +45,7 @@ public class Drivetrain extends SubsystemBase {
      */
     public double driveDistance(Measure<Distance> meters) {
         double voltage = 0;
-
+         
         // code to calculate voltage that needs to be applied-
         // in order to move a certain distance
         // hint: use PID
