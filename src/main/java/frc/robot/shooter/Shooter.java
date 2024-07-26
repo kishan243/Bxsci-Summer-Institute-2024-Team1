@@ -37,12 +37,7 @@ public class Shooter extends SubsystemBase {
      * @return the amount of power neccesary to score the cell into the bank
      */
     public double calcVelocity(double currentX, double currentY) {
-        double xDistFromBank = Math.pow(currentX - bankX.in(Inches), 2);
-        double yDistFromBank = Math.pow(currentY - bankY.in(Inches), 2);
-        double distFromBank = Math.sqrt(xDistFromBank + yDistFromBank);
-
-        double cPower = distFromBank / ShooterConstants.testingDistance * ShooterConstants.testingPower;
-        return cPower;
+        double velocity = 
     }
 
     /**
