@@ -17,8 +17,8 @@ public class Drivetrain extends SubsystemBase {
     private CANSparkMax rightLeader = new CANSparkMax(2, kBrushless);
     private CANSparkMax rightFollower = new CANSparkMax(3, kBrushless);
 
-    private Encoder leftEncoder = new Encoder(null, null);
-    private Encoder rightEncoder = new Encoder(null, null);
+    private Encoder leftEncoder = new Encoder(leftEncoderSourceA, leftEncoderSourceB);
+    private Encoder rightEncoder = new Encoder(RightEncoderSourceA, RightEncoderSourceB);
 
     private final PIDController pidControllerRotation = new PIDController(1, 0, 1);
 
