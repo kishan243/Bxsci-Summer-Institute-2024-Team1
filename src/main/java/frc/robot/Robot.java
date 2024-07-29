@@ -17,9 +17,12 @@ import frc.robot.intake.Intake;
 import frc.robot.shooter.Shooter;
 
 /**
- * The VM is configured to automatically run this class, and to call the functions corresponding to
- * each mode, as described in the TimedRobot documentation. If you change the name of this class or
- * the package after creating this project, you must also update the build.gradle file in the
+ * The VM is configured to automatically run this class, and to call the
+ * functions corresponding to
+ * each mode, as described in the TimedRobot documentation. If you change the
+ * name of this class or
+ * the package after creating this project, you must also update the
+ * build.gradle file in the
  * project.
  */
 public class Robot extends TimedRobot {
@@ -33,9 +36,9 @@ public class Robot extends TimedRobot {
 
   private static Pose2d position = new Pose2d(0, 0, new Rotation2d());
 
-
   /**
-   * This function is called every 20 ms, no matter the mode. Use this for items like diagnostics
+   * This function is called every 20 ms, no matter the mode. Use this for items
+   * like diagnostics
    * that you want ran during disabled, autonomous, teleoperated and test.
    *
    * <p>
@@ -45,9 +48,12 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
-    // Runs the Scheduler.  This is responsible for polling buttons, adding newly-scheduled
-    // commands, running already-scheduled commands, removing finished or interrupted commands,
-    // and running subsystem periodic() methods.  This must be called from the robot's periodic
+    // Runs the Scheduler. This is responsible for polling buttons, adding
+    // newly-scheduled
+    // commands, running already-scheduled commands, removing finished or
+    // interrupted commands,
+    // and running subsystem periodic() methods. This must be called from the
+    // robot's periodic
     // block in order for anything in the Command-based framework to work.
     CommandScheduler.getInstance().run();
   }
@@ -65,7 +71,7 @@ public class Robot extends TimedRobot {
   /** This function is called once each time the robot enters autonomous mode. */
   @Override
   public void autonomousInit() {
-    
+
   }
 
   /** This function is called periodically during autonomous. */
@@ -90,13 +96,14 @@ public class Robot extends TimedRobot {
   }
 
   /** This function is called periodically during operator control. */
-  //Once a is held down the intake will extend and be activated along with the elevator until the beambreak is triggered
+  // Once a is held down the intake will extend and be activated along with the
+  // elevator until the beambreak is triggered
   @Override
   public void teleopPeriodic() {
     drivetrain.setDefaultCommand(drivetrain.driveCommand(driver.getLeftY(), driver.getRightY()));
 
     if (elevator.getBeamBreak()) {
-      CommandScheduler.getInstance().schedule(new ShootCommand(drivetrain, shooter, position));
+      CommandScheduler.getInstance().schedule(new ShootCommand(drivetrain, shooter, position).until(controller.x()));
     }
   }
 
@@ -109,13 +116,16 @@ public class Robot extends TimedRobot {
 
   /** This function is called periodically during test mode. */
   @Override
-  public void testPeriodic() {}
+  public void testPeriodic() {
+  }
 
   /** This function is called once when the robot is first started up. */
   @Override
-  public void simulationInit() {}
+  public void simulationInit() {
+  }
 
   /** This function is called periodically whilst in simulation. */
   @Override
-  public void simulationPeriodic() {}
+  public void simulationPeriodic() {
+  }
 }

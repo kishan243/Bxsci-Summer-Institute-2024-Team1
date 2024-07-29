@@ -6,6 +6,8 @@ package frc.robot;
 
 import edu.wpi.first.units.Distance;
 import edu.wpi.first.units.Measure;
+import edu.wpi.first.units.Velocity;
+
 import static edu.wpi.first.units.Units.*;
 
 /**
@@ -35,33 +37,35 @@ public final class Constants {
     // positive Y is up the field
     // positive X is to the right
 
-    public static final Measure<Distance> BankLength = Inches.of(36);
-    public static final Measure<Distance> BankWidth = Inches.of(48);
+    public static final Measure<Distance> BANK_LENGTH = Inches.of(36);
+    public static final Measure<Distance> BANK_WIDTH = Inches.of(48);
 
-    public static final Measure<Distance> bankX = Inches.of(132);
-    public static final Measure<Distance> bankY = Inches.of(90);
+    public static final Measure<Distance> BANK_X = Inches.of(132);
+    public static final Measure<Distance> BANK_Y = Inches.of(90);
 
-    public static final Measure<Distance> fieldLength = Inches.of(312);
-    public static final Measure<Distance> fieldWidth = Inches.of(180);
+    public static final Measure<Distance> FIELD_LENGTH = Inches.of(312);
+    public static final Measure<Distance> FIELD_WIDTH = Inches.of(180);
+
     //dimensions of field
 
-    public static final Measure<Distance> fieldX = Inches.of(0);
-    public static final Measure<Distance> fieldY = Inches.of(0);
+    public static final Measure<Distance> FIELD_X = Inches.of(0);
+    public static final Measure<Distance> FIELD_Y = Inches.of(0);
 
-    public static final Measure<Distance> humanPlayerZoneLength = Inches.of(24);
-    public static final Measure<Distance> humanPlayerZoneWidth = Inches.of(36);
+    public static final Measure<Distance> HUMAN_PLAYER_ZONE_LENGTH = Inches.of(24);
+    public static final Measure<Distance> HUMAN_PLAYER_ZONE_WIDTH = Inches.of(36);
 
-    public static final Measure<Distance> humanPlayerZoneX = Inches.of(90);
-    public static final Measure<Distance> humanPlayerZoneY = Inches.of(-156);
+    public static final Measure<Distance> HUMAN_PLAYER_ZONE_X = Inches.of(90);
+    public static final Measure<Distance> HUMAN_PLAYER_ZONE_Y = Inches.of(-156);
 
-    public static final Measure<Distance> cellBankZoneLength = Inches.of(87);
-    public static final Measure<Distance> cellBankZoneWidth = Inches.of(180);
+    public static final Measure<Distance> CELL_BANK_ZONE_LENGTH = Inches.of(87);
+    public static final Measure<Distance> CELL_BANK_ZONE_WIDTH = Inches.of(180);
 
-    public static final Measure<Distance> midZoneLength = Inches.of(68);
-    public static final Measure<Distance> midZoneWidth = Inches.of(180);
+    public static final Measure<Distance> MID_ZONE_LENGTH = Inches.of(68);
+    public static final Measure<Distance> MID_ZONE_WIDTH = Inches.of(180);
 
-    public static final Measure<Distance> endZoneLength = Inches.of(155);
-    public static final Measure<Distance> endZoneWidth = Inches.of(180);
+    public static final Measure<Distance> END_ZONE_LENGTH = Inches.of(155);
+    public static final Measure<Distance> END_ZONE_WIDTH = Inches.of(180);
 
+    public static final double G = 9.8; // meters per second^2
   }
 }

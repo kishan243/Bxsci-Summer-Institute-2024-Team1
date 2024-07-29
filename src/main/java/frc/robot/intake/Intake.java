@@ -58,16 +58,16 @@ public class Intake extends SubsystemBase {
 
     // // Starts the elevator
     // public Command toggleElevation() {
-    //     return runOnce(
-    //             () -> {
-    //                 if (isElevated.getAsBoolean()) {
-    //                     elevator.set(0);
-    //                     elevated = false;
-    //                 } else {
-    //                     elevator.set(1);
-    //                     elevated = true;
-    //                 }
-    //             });
+    // return runOnce(
+    // () -> {
+    // if (isElevated.getAsBoolean()) {
+    // elevator.set(0);
+    // elevated = false;
+    // } else {
+    // elevator.set(1);
+    // elevated = true;
+    // }
+    // });
     // }
 
     @Override
