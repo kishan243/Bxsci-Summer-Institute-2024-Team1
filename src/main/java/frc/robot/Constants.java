@@ -20,6 +20,7 @@ import static edu.wpi.first.units.Units.*;
 public final class Constants {
   public static class OperatorConstants {
     public static final int driverControllerPort = 0;
+    public static final int OperatorControllerPort = 0;
   }
   
   public static class FieldConstants {
